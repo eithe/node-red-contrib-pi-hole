@@ -1,0 +1,25 @@
+{
+  "name": "node-red-contrib-pi-hole",
+  "version": "0.0.1",
+  "description": "A node to control a local Pi-hole instance",
+  "main": "pi-hole.js",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "node-red",
+    "pi-hole"
+  ],
+  "dependencies": {
+    "is-utf8": "0.2.1"
+  },
+  "author": "Eirik Hodne",
+  "license": "See LICENSE in repo",
+  "repository": "github:eithe/node-red-contrib-pi-hole",
+  "node-red" : {
+        "nodes": {
+            "pi-hole": "pi-hole.js"
+        }
+    }
+  
+}

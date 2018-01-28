@@ -1,0 +1,85 @@
+
+
+<script type="text/x-red" data-template-name="pi-hole">
+    
+    <div class="form-row">
+        <label for="node-input-command"><i class="fa fa-file"></i> Command</label>
+        <select type="text" id="node-input-command" style="width:70%">
+            <option value="">None</option>
+            <option value="enable">Enable</option>
+            <option value="disable">Disable</option>
+            <option value="restart">Restart</option>
+            <option value="updatePihole">Update Pi-hole subsystems</option>
+            <option value="updateGravity">Update the list of ad-serving domains</option>
+            <option value="flush">Flush logs</option>
+            <option value="status">Get status</option>
+            <option value="version">Get version</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-addpay"><i class="fa fa-plus"></i> Append</label>
+        <input type="checkbox" id="node-input-addpay" style="display:inline-block; width:auto; vertical-align:top;">
+        &nbsp;msg.payload
+    </div>
+    <div class="form-row">
+        <label for="node-input-append"> </label>
+        <input type="text" id="node-input-append" placeholder="extra input parameters">
+    </div>
+
+    
+    <div class="form-row">
+        <label for="node-input-timer"><i class="fa fa-clock-o"></i> Timeout</label>
+        <input type="text" id="node-input-timer" style="width:65px;" placeholder="optional">
+        seconds
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="pi-hole">
+    <p>A node to control a local Pi-hole installation</p>
+    <h3>Command</h3>
+    <p>Select which command we should send to pi-hole. You can use None to let msg.payload specify the command to run.</p>
+
+    <h3>Append</h3>
+    <p>The first option lets you append the input msg.payload to pi-hole, and the second allows you to specify additional parameters to send.</p>
+
+    <h3>Timeout</h3>
+    <p>How long we wait for your pi-hole command to finish. Please note that updating pi-hole or updating the list of ad-serving domains might take a while.
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('pi-hole',{
+        category: 'function',
+        color:"#FFAAAA",
+        defaults: {
+            command: {value:""},
+            addpay: {value:true},
+            append: {value:""},
+            useSpawn: {value:"false"},
+            timer: {value:""},
+            oldrc: {value:false},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:3,
+        outputLabels: ["stdout","stderr","return code"],
+        icon: "pihole.png",
+        align: "right",
+        label: function() {
+            return this.name||this.command;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            if ($("#node-input-command").val() === null) {
+                $("#node-input-command").val(this.command.toString());
+            }
+        }
+    });
+</script>
