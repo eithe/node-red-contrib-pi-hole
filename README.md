@@ -11,4 +11,6 @@ Enable, disable, status, update, update Gravity, restart, flush logs, get versio
 
 # TODO
 
+Implement all relevant Pi-hole command line options.
 Return json formatted results from Pi-hole, not just stout.
+Ability to control remote Pi-hole instances.
