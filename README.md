@@ -6,11 +6,27 @@ The pi-hole node is similar to (and based on) the exec node, but lets you more e
 
 # Supported commands
 
-Most of the pihole command options: Enable, disable, status, update, update Gravity, restart, flush logs, get version, search the adlist, logging options, whitelist/blacklist actions. You may also specify commands/extra parameters through msg.payload input and/or through the custom append option.
+Most of the pihole command options:
+
+- Enable
+- Disable
+- Restart
+- Status
+- Stats (the `chronometer` command)
+- Update
+- Update Gravity
+- Flush logs
+- Get version
+- Search the adlist
+- Logging on/off
+- Whitelist actions/listing
+- Blacklist actions/listing
+
+You may also specify commands/extra parameters through msg.payload input and/or through the custom append option.
 
 
 # TODO
 
-- Implement all relevant Pi-hole command line options (ongoing).
+- Implement the `tail` command for live output from the Pi-hole log
 - Return json formatted results from Pi-hole, not just stdout.
 - Ability to control remote Pi-hole instances.

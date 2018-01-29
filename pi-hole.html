@@ -13,6 +13,7 @@
             <option value="updateGravity">Update the list of ad-serving domains</option>
             <option value="flush">Flush Pi-hole logs</option>
             <option value="status">Get Pi-hole status</option>
+            <option value="chronometer --json">Get Pi-hole stats (json formatted string)</option>
             <option value="version">Get Pi-hole version</option>
             <option value="logging on">Enable Pi-hole logging</option>
             <option value="logging off">Disable Pi-hole logging</option>
@@ -52,17 +53,31 @@
 
 <script type="text/x-red" data-help-name="pi-hole">
     <p>A node to control a local Pi-hole installation</p>
+
+    <h3>Prerequisites</h3>
+    <p>
+        The user account that runs Node-RED must be able to run the pihole command directly or through sudo without a password.<br>
+        <br>
+        For the sudo option, try this: <br>
+        <code>sudo visudo</code><br>
+        Append the following to the bottom of the file, replacing username with the user that runs Node-RED and your path to pihole:<br>
+        <code>username ALL=(ALL) NOPASSWD: /usr/local/bin/pihole</code><br>
+        <br>
+        You can run <code>whereis pihole</code> to figure out where pihole is installed on your system.
+    </p>
+
+
     <h3>Command</h3>
     <p>
-        Select which command we should send to pi-hole. You can use None to let msg.payload specify the command to run.<br/>
-        <br/>
+        Select which command we should send to pi-hole. You can use None to let msg.payload specify the command to run.<br>
+        <br>
         Some of the commands should (normally) always be used together with the Append feature (e.g. to specify which domain to search for when using the Search command).
     </p>
 
     <h3>Append</h3>
     <p>
-        The first option lets you append the input msg.payload to pi-hole, and the second allows you to specify additional parameters to send.<br/>
-        <br/>
+        The first option lets you append the input msg.payload to pi-hole, and the second allows you to specify additional parameters to send.<br>
+        <br>
         Use this for any custom parameters you want to send to the pihole command.
     </p>
 
