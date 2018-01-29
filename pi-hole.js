@@ -19,7 +19,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,n);
 
         this.command = (n.command || "").trim();
-        if (n.addpay === undefined) { n.addpay = false; }
+        if (n.addpay === undefined) { n.addpay = true; }
         this.addpay = n.addpay;
         this.append = (n.append || "").trim();
         this.timer = Number(n.timer || 0)*1000;

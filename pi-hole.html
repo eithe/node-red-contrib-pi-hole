@@ -6,14 +6,24 @@
         <label for="node-input-command"><i class="fa fa-file"></i> Command</label>
         <select type="text" id="node-input-command" style="width:70%">
             <option value="">None</option>
-            <option value="enable">Enable</option>
-            <option value="disable">Disable</option>
-            <option value="restart">Restart</option>
+            <option value="enable">Enable Pi-hole</option>
+            <option value="disable">Disable Pi-hole</option>
+            <option value="restart">Restart Pi-hole</option>
             <option value="updatePihole">Update Pi-hole subsystems</option>
             <option value="updateGravity">Update the list of ad-serving domains</option>
-            <option value="flush">Flush logs</option>
-            <option value="status">Get status</option>
-            <option value="version">Get version</option>
+            <option value="flush">Flush Pi-hole logs</option>
+            <option value="status">Get Pi-hole status</option>
+            <option value="version">Get Pi-hole version</option>
+            <option value="logging on">Enable Pi-hole logging</option>
+            <option value="logging off">Disable Pi-hole logging</option>
+            <option value="query">Search the adlist for msg.payload/input</option>
+            <option value="query -exact">Search the adlist exactly for msg.payload/input</option>
+            <option value="whitelist">Whitelist: Add msg.payload/input to list</option>
+            <option value="whitelist -d">Whitelist: Remove msg.payload/input from list</option>
+            <option value="whitelist -l">Whitelist: Get list</option>
+            <option value="blacklist">Blacklist: Add msg.payload/input to list</option>
+            <option value="blacklist -d">Blacklist: Remove msg.payload/input from list</option>
+            <option value="blacklist -l">Blacklist: Get list</option>
         </select>
     </div>
 
@@ -43,13 +53,21 @@
 <script type="text/x-red" data-help-name="pi-hole">
     <p>A node to control a local Pi-hole installation</p>
     <h3>Command</h3>
-    <p>Select which command we should send to pi-hole. You can use None to let msg.payload specify the command to run.</p>
+    <p>
+        Select which command we should send to pi-hole. You can use None to let msg.payload specify the command to run.<br/>
+        <br/>
+        Some of the commands should (normally) always be used together with the Append feature (e.g. to specify which domain to search for when using the Search command).
+    </p>
 
     <h3>Append</h3>
-    <p>The first option lets you append the input msg.payload to pi-hole, and the second allows you to specify additional parameters to send.</p>
+    <p>
+        The first option lets you append the input msg.payload to pi-hole, and the second allows you to specify additional parameters to send.<br/>
+        <br/>
+        Use this for any custom parameters you want to send to the pihole command.
+    </p>
 
     <h3>Timeout</h3>
-    <p>How long we wait for your pi-hole command to finish. Please note that updating pi-hole or updating the list of ad-serving domains might take a while.
+    <p>How long we wait for your pi-hole command to finish. Please note that updating pi-hole or updating the list of ad-serving domains might take a while.</p>
 </script>
 
 <script type="text/javascript">
@@ -69,7 +87,7 @@
         outputs:3,
         outputLabels: ["stdout","stderr","return code"],
         icon: "pihole.png",
-        align: "right",
+        align: "left",
         label: function() {
             return this.name||this.command;
         },
